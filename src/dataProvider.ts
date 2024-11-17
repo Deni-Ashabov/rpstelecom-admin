@@ -118,10 +118,10 @@ export default {
     }
 
     const sizes = {} as { [index: string]: boolean }
-    let images = null
+    let mewImages = null
 
     if (params.data.images.every((img: { src: string }) => img.src)) {
-      images = await getImagesFromRawFile(params.data.images)
+      mewImages = await getImagesFromRawFile(params.data.images)
     }
 
     if (params.data.sizes) {
@@ -135,7 +135,7 @@ export default {
       category: resource,
       _id: params.data.id,
       sizes,
-      ...(images && images),
+      images: mewImages ? mewImages : params.data.images,
       isNew: !!params.data.isNew?.length,
       isBestseller: !!params.data.isBestseller?.length,
     })
